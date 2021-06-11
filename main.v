@@ -4,16 +4,16 @@
     output reg [0:0] q;
     input clk;
     input [11:0] a;
-    reg [0:0] rom [4095:0];
+    reg [0:0] rom [299:0];
     always @(posedge clk) q <= rom[a];
     integer i;
     initial
     begin
-        for (i=0; i < 4096; i=i+1)
+        for (i=0; i < 300; i=i+1)
         begin
             rom[i] = 0;
         end
-    
+
         rom[0] = 0;
 rom[1] = 1;
 rom[2] = 0;
@@ -113,14 +113,14 @@ rom[95] = 1;
 rom[287] = 0;
     end
     endmodule
-     
+
 
     module v$data$ram2_2494(q, a, d, we, clk);
     output reg [15:0] q;
     input [15:0] d;
     input [11:0] a;
     input we, clk;
-    reg [15:0] ram [4095:0];
+    reg [15:0] ram [99:0];
      always @(posedge clk) begin
          if (we)
              ram[a] <= d;
@@ -130,7 +130,7 @@ rom[287] = 0;
     integer i;
     initial
     begin
-        for (i=0; i < 4096; i=i+1)
+        for (i=0; i < 100; i=i+1)
         begin
             ram[i] = 0;
         end
@@ -169,14 +169,14 @@ ram[33] = 0;
     end
     endmodule
 
-    
+
 
     module v$RAM1_2730(q, a, d, we, clk);
     output reg [15:0] q;
     input [15:0] d;
     input [11:0] a;
     input we, clk;
-    reg [15:0] ram [4095:0];
+    reg [15:0] ram [99:0];
      always @(posedge clk) begin
          if (we)
              ram[a] <= d;
@@ -186,7 +186,7 @@ ram[33] = 0;
     integer i;
     initial
     begin
-        for (i=0; i < 4096; i=i+1)
+        for (i=0; i < 100; i=i+1)
         begin
             ram[i] = 0;
         end
@@ -240,28 +240,17 @@ ram[45] = 7684;
 ram[46] = 2770;
 ram[47] = 38913;
 ram[48] = 0;
-ram[2036] = 50786;
-ram[2037] = 205;
-ram[2038] = 3281;
-ram[2039] = 12997;
-ram[2040] = 3797;
-ram[2041] = 35840;
-ram[2042] = 15561;
-ram[2043] = 3285;
-ram[2044] = 717;
-ram[2045] = 3793;
-ram[2046] = 50688;
     end
     endmodule
 
-    
+
 
     module v$RAM0_10490(q, a, d, we, clk);
     output reg [15:0] q;
     input [15:0] d;
     input [11:0] a;
     input we, clk;
-    reg [15:0] ram [4095:0];
+    reg [15:0] ram [2499:0];
      always @(posedge clk) begin
          if (we)
              ram[a] <= d;
@@ -271,7 +260,7 @@ ram[2046] = 50688;
     integer i;
     initial
     begin
-        for (i=0; i < 4096; i=i+1)
+        for (i=0; i < 2500; i=i+1)
         begin
             ram[i] = 0;
         end
@@ -333,7 +322,7 @@ ram[2047] = 0;
     end
     endmodule
 
-    
+
 module main (
 	clk,
 	v$BYTE$RECEIVED10_10681_out0);
