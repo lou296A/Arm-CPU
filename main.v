@@ -250,7 +250,7 @@ ram[48] = 0;
     input [15:0] d;
     input [11:0] a;
     input we, clk;
-    reg [15:0] ram [2499:0];
+    reg [15:0] ram [199:0];
      always @(posedge clk) begin
          if (we)
              ram[a] <= d;
@@ -260,7 +260,7 @@ ram[48] = 0;
     integer i;
     initial
     begin
-        for (i=0; i < 2500; i=i+1)
+        for (i=0; i < 200; i=i+1)
         begin
             ram[i] = 0;
         end
@@ -306,19 +306,7 @@ ram[37] = 6158;
 ram[38] = 39936;
 ram[39] = 7684;
 ram[40] = 737;
-ram[2035] = 50786;
-ram[2036] = 205;
-ram[2037] = 3281;
-ram[2038] = 12997;
-ram[2039] = 3797;
-ram[2040] = 35840;
-ram[2041] = 15561;
-ram[2042] = 3285;
-ram[2043] = 717;
-ram[2044] = 3793;
-ram[2045] = 50688;
-ram[2046] = 1753;
-ram[2047] = 0;
+ram[48] = 0;
     end
     endmodule
 
