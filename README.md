@@ -7,12 +7,12 @@ The objective of this project was to build an efficient CPU using the ARM archit
 
 It needed the following capabilities:
 
-The CPU should be working with 16-bit 
-The ALU should support all the basing operations such as add, subtract and multiplication, shifting, XOR, AND, MOV
-support Floating point arithmetic using the 32-bit IEEE 754 sing 
-The CPU should also support pipelining
-Serial communication using UART for network communication and storage.
-Dual-core to perform faster computation.
+The CPU should be working with 16-bit <br>
+The ALU should support all the basing operations such as add, subtract and multiplication, shifting, XOR, AND, MOV<br>
+support Floating point arithmetic using the 32-bit IEEE 754 single preicision  <br>
+The CPU should also support pipelining<br>
+Serial communication using UART for network communication and storage.<br>
+Dual-core to perform faster computation.<br>
 
 These were successfully developed and can be seen within the repository.
 	
