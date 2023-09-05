@@ -8,7 +8,7 @@ The objective of this project was to build an efficient CPU using the ARM archit
 It needed the following capabilities:
 
 The CPU should be working with 16-bit <br>
-The ALU should support all the basing operations such as add, subtract and multiplication, shifting, XOR, AND, MOV<br>
+The ALU should support all the basic operations such as add, subtract and multiplication, shifting, XOR, AND, MOV<br>
 support Floating point arithmetic using the 32-bit IEEE 754 single precision  <br>
 The CPU should also support pipelining<br>
 Serial communication using UART for network communication and storage.<br>
