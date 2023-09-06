@@ -1,10 +1,10 @@
 # Computer Architecture Design Project: DualCore ARM CPU 
 ## introduction
-ARM-CPU is part of 1 year module (Digital Design and Computer Architecture) and then extended to a group project. The CPU was implemented using Issie. [Issie](https://github.com/tomcl/issie) is an application for digital circuit design and simulation, which enable the development of digital circuit at logic gate level.  
+ARM-CPU is initially part of a one-year module focused on Digital Design and Computer Architecture, and it is later extended into a group project. The CPU was implemented using Issie. [Issie](https://github.com/tomcl/issie) is an application for digital circuit design and simulation, which enable the development of digital circuit at logic gate level.  
 
 The objective of this project was to build an efficient CPU using the ARM architecture, optimized to solve commonly occurring computing problems. As the CPU was designed at logic gate level, the feature had to be chosen carefully to achieve the best performance in the greatest number of applications for the smallest number of transistors.
 
-This README aim to give a high level overview of the cpu implementation, for more details you can access refer to the full report.Bare in mind that this was one of my first report as student (Fortunetely the quality of my reports have improved over time).   
+This README aim to give a high level overview of the cpu implementation, for more details you can access refer to the full [report](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/CPU_Project_Report_-_Patsalidis%2C_Mohd_Ridzal%2C_Alsteens.pdf).Bare in mind that this was one of my first report as student (Fortunetely the quality of my reports have improved over time).   
 
 
 ### Specification	
@@ -20,14 +20,19 @@ These were successfully developed and can be seen within the repository.
 ## UART
 Serial communication is our initial focus. To achieve this, a UART (universal asynchronous receiver transmitter) is being designed to act as a memory-mapped device. 
 This enables the CPU to manage byte transmission and reception through special registers, data can then be store in the regular RAM locations.
-![UART_memory](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/uart_memorymap.png)
+
+<p align="middle">
+<img src="Pictures/uart_memorymap.png" style="width:700px;" alt="Pseudo-code of STOMP"/>
+</p>
 
 The UART block should include two sub-blocks, each handling the reception or transmission of a 10-bit word.
 The word to be received/transmitted should consist of 1 start bit (logic 0), 1 stop bit (logic 1), and 8 data bits. 
 The least significant bit (LSB) of the byte is the first to be received/transmitted
 
 
-![Uart-architecture](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/UART_overallarch.png)
+<p align="middle">
+<img src="Pictures/UART_overallarch.png" style="width:800px;" alt="Pseudo-code of STOMP"/>
+</p>
 For this UART implementation:
 
 - Data is transmitted and received sequentially at a rate of 1 bit per 4 clock cycles.
@@ -45,9 +50,12 @@ The Dual Core CPU is the third and final feature, and it requires the design of 
 Problems may arise from sharing data, such as when both CPUs try to access the data
 memory simultaneously. To counteract this problem, we will be including an arbitration logic
 in our design, which will grant access to the data memory to a specific CPU and force the
-other CPU to stall and access the data in the next clock cycle. 
+other CPU to stall and access the data in the next clock cycle.
 
-![dual_core architecture](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/Dualcore_arch.png)
+<p align="middle">
+<img src="Pictures/Dualcore_arch.png" style="width:700px;" alt="Pseudo-code of STOMP"/>
+</p>
+
 
 With the aid of the various Bus signals shown in the figure above, the arbitration logic will be
 able to recognise when a read or write operation is taking place/has been completed.
@@ -63,7 +71,7 @@ that aspect of our CPU, by implementing Floating-Point Arithmetic. It will allow
 represent numbers with more accuracy, and thus be able to have more precise calculation
 results.
 This feature needs to support Addition, Subtraction and Multiplication. Each operation requires
-a different way of handling, and consequently three different designs should be created.
+a different way of handling, and consequently three different designs should be created (more info can be found in the [report](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/CPU_Project_Report_-_Patsalidis%2C_Mohd_Ridzal%2C_Alsteens.pdf)
 
 For our implementation, we shall be using the 16-bit IEEE 754 half-precision number format.
 The 16-bit word which we will be using to represent our numbers, should include 1 sign bit, 11
@@ -78,6 +86,7 @@ number formats will be explained in more detail later
 
 ![floating point 32](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/Float_example.svg.png)
 
-## Pipelining
+
+
 	
 	
