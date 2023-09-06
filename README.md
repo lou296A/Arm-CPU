@@ -46,7 +46,7 @@ For this UART implementation:
 
 
 ## Dual Core CPU
-The Dual Core CPU is the third and final feature, and it requires the design of a mechanism for two CPU cores to share data while maintaining separate instruction memory.
+The Dual Core CPU is the second feature that was implemented, and it requires the design of a mechanism for two CPU cores to share data while maintaining separate instruction memory.
 Problems may arise from sharing data, such as when both CPUs try to access the data
 memory simultaneously. To counteract this problem, we will be including an arbitration logic
 in our design, which will grant access to the data memory to a specific CPU and force the
