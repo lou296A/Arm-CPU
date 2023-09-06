@@ -18,35 +18,66 @@ This README aim to give a high level overview of the cpu implementation, for mor
 These were successfully developed and can be seen within the repository.
 
 ## UART
-
-The word that is to be received/transmitted needs to include 1 start bit, (of logic 0) 1 stop bit
-(of logic 1) and 8 data bits. (Where the LSB of the byte is the first one to be
-received/transmitted). 
-![Uart-architecture](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/UART_overallarch.png)
-Since the UART is built to receive/transmit data sequentialy , for this implementation we
-must take into consideration that the rate of transmission will be 1 bit per 4 clock cycles.
-In addition, we need to implement a way for the CPU to be able to recognise if:
-- a byte has been received since the receive register was last read by the CPU.
-- a transmission is in progress.
-- there was a receive overflow. (a byte was received before the previous byte was
-read by the CPU)
--  there was a transmit overflow. (a byte was written by the CPU before the previous
-byte had finished transmission)
-
--
-The advanced portion of this implementation is to add an interrupt function, which is
-explained in greater detail later.
-
-
-### UART interface
-The UART was implemented as a memory map. We decided to follow the suggestion, given
-by the instruction set, even thought we could have chosen different addresses. 
+Serial communication is our initial focus. To achieve this, a UART (universal asynchronous receiver transmitter) is being designed to act as a memory-mapped device. 
+This enables the CPU to manage byte transmission and reception through special registers, data can then be store in the regular RAM locations.
 ![UART_memory](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/uart_memorymap.png)
 
+The UART block should include two sub-blocks, each handling the reception or transmission of a 10-bit word.
+The word to be received/transmitted should consist of 1 start bit (logic 0), 1 stop bit (logic 1), and 8 data bits. 
+The least significant bit (LSB) of the byte is the first to be received/transmitted
+
+
+![Uart-architecture](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/UART_overallarch.png)
+For this UART implementation:
+
+- Data is transmitted and received sequentially at a rate of 1 bit per 4 clock cycles.
+- CPU recognition features include:
+	- Detection of received bytes since the last CPU read of the receive register.
+	- Identification of ongoing transmissions.
+ 	- Handling of receive overflow (when a byte arrives before the previous one is read).
+	- Handling of transmit overflow (when a byte is written by the CPU before the previous byte finishes transmission).
+	- Add a interupt function so data can be received at random point in time.
+ More information on those specification can be found in the report. 
+
+
 ## Dual Core CPU
-#overall archicte
+The Dual Core CPU is the third and final feature, and it requires the design of a mechanism for two CPU cores to share data while maintaining separate instruction memory.
+Problems may arise from sharing data, such as when both CPUs try to access the data
+memory simultaneously. To counteract this problem, we will be including an arbitration logic
+in our design, which will grant access to the data memory to a specific CPU and force the
+other CPU to stall and access the data in the next clock cycle. 
+
 ![dual_core architecture](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/Dualcore_arch.png)
 
+With the aid of the various Bus signals shown in the figure above, the arbitration logic will be
+able to recognise when a read or write operation is taking place/has been completed.
+The addition of this feature, will allow us to execute something twice as fast since we can now
+split the workload into two CPUs, working simultaneously
+#overall archicte
+
+
 ## Floating-Point Arithmetic
+
+Arithmetic is vital part of a CPU and is therefore greatly advantageous to be able to improve
+that aspect of our CPU, by implementing Floating-Point Arithmetic. It will allow us to
+represent numbers with more accuracy, and thus be able to have more precise calculation
+results.
+This feature needs to support Addition, Subtraction and Multiplication. Each operation requires
+a different way of handling, and consequently three different designs should be created.
+
+For our implementation, we shall be using the 16-bit IEEE 754 half-precision number format.
+The 16-bit word which we will be using to represent our numbers, should include 1 sign bit, 11
+significant bits and 5 exponent bits
+
+![floating point 16](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/175px-IEEE_754r_Half_Floating_Point_Format.svg.png)
+
+We are also designing the advanced segment of the Floating-Point Arithmetic feature, which
+uses 32-bit IEEE 754 single precision number format. In contrast to the previous number
+representation, for this one we use 1 sign bit, 23 significant bits and 8 exponent bits. Both
+number formats will be explained in more detail later
+
+![floating point 32](https://github.com/lou296A/Arm-CPU/blob/master/Pictures/Float_example.svg.png)
+
+## Pipelining
 	
 	
